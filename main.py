@@ -39,12 +39,15 @@ while user_guess != number:
 print(
     f"Congratulations!!\nYou have guessed the number {number} correctly in {guesses} guesses.")
 
-with open("score.txt", "r") as f:
-    hiscore = f.read()
-    if hiscore != "":
-        hiscore = int(hiscore)
-    else:
-        hiscore = 0
+try:
+    with open("score.txt", "r") as f:
+        hiscore = f.read()
+        if hiscore != "":
+            hiscore = int(hiscore)
+        else:
+            hiscore = 0
+except FileNotFoundError:
+    hiscore = 0
 
 if guesses < hiscore or hiscore == 0:
     print("You have set a new high score!")
